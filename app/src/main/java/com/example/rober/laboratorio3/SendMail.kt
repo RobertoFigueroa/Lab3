@@ -8,5 +8,10 @@ class SendMail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_mail)
+
+        val telefono = intent.getStringExtra("tel")
+        val correo = intent.getStringExtra("mail")
+
+
     }
 }

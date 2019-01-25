@@ -16,6 +16,9 @@ class Contact : Application() {
             this.contacts.removeAt(index)
         }
 
+        fun getitem(index : Int): String {
+            return this.contacts.get(index)
+        }
         fun getList() : ArrayList<String> {
             return contacts
         }

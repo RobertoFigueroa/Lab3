@@ -1,5 +1,6 @@
 package com.example.rober.laboratorio3
 
+
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +9,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-
+val EXTRA_INFO = "com.example.rober.laboratorio3.MESSAGE"
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         contact_list.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(this, ViewContact::class.java)
-            intent.putExtra("info" , Contact.getList()[position])
+            intent.putExtra(EXTRA_INFO , Contact.getitem(position))
             startActivity(intent)
         }
-
-
 
     }
     fun addContact(view: View) {
