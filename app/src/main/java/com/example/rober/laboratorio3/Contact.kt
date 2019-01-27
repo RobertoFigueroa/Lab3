@@ -6,21 +6,21 @@ class Contact : Application() {
 
     companion object {
 
-        private var contacts : ArrayList<String> = ArrayList()
+        private var contacts : ArrayList<ContactObject> = ArrayList()
 
-        fun add(element : String) {
+        fun add(element : ContactObject) {
             this.contacts.add(element)
         }
 
-        fun del(index : Int) {
-            this.contacts.removeAt(index)
-        }
-
-        fun getitem(index : Int): String {
-            return this.contacts.get(index)
+        fun getItem(index : Int): String {
+            return this.contacts[index].getInfo()
         }
         fun getList() : ArrayList<String> {
-            return contacts
+            var values : ArrayList<String> = ArrayList()
+            for(item in contacts){
+                values.add(item.toString())
+            }
+            return values
         }
 
     }

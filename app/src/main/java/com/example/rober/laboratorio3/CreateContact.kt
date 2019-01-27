@@ -15,14 +15,15 @@ class CreateContact : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_contact)
 
-        crear_cont.setOnClickListener {
+        crear_cont.setOnClickListener { //se creara un contacto con la informacion obtenida por los cuadros de ingreso de texto
             val editText = findViewById<EditText>(R.id.name)
-            var message = editText.text.toString()
+            var nombre = editText.text.toString()
             val editText2 = findViewById<EditText>(R.id.phone)
-            message += "-${editText2.text.toString()}"
+            val tel = editText2.text.toString()
             val editText3 = findViewById<EditText>(R.id.mail)
-            message += "+${editText3.text.toString()}"
-            Contact.add(message)
+            val correo = editText3.text.toString()
+            val contacto  =  ContactObject(nombre,tel,correo)
+            Contact.add(contacto)
             val intent = Intent(this,MainActivity::class.java)
             Toast.makeText(this, "Se a creado un nuevo contacto!", Toast.LENGTH_SHORT).show()
             startActivity(intent)

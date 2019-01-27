@@ -1,5 +1,6 @@
 package com.example.rober.laboratorio3
 
+import android.Manifest
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -23,19 +24,25 @@ class ViewContact : AppCompatActivity() {
         setContentView(R.layout.activity_ver_contacto)
 
         //Get the Intent that started this activity and extract the string
-        val message = intent.getStringExtra(EXTRA_INFO)
-
+        val message = intent.getStringExtra("EXTRA_INFO")
+        //separar la cadena de caracteres con la informacion del contacto para deplegarla en la actividad adecuadamente
        val indxname = message.indexOf("-")
-        val name = message.subSequence(0,indxname)
+        val name = message.subSequence(0,indxname).toString()
         val indxmail = message.indexOf("+")
-        val tel  = message.subSequence((indxname+1),(indxmail) )
-        val mail = message.subSequence(indxmail+1,message.length)
+        val tel  = message.subSequence((indxname+1),(indxmail) ).toString()
+        val mail = message.subSequence(indxmail+1,message.length).toString()
         val dummy = listOf(name,tel,mail)
         val contac = ArrayAdapter<CharSequence>(this, android.R.layout.simple_list_item_1, dummy)
         lista.adapter = contac
 
         lista.setOnItemClickListener { parent, view, position, id ->
             if(position == 1){
+                val callIntent = Intent(Intent.ACTION_DIAL)
+                callIntent.data = Uri.parse("tel:$tel")
+                if (ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                }
+                startActivity(callIntent)
 
             }
             if(position == 2){
